@@ -1,0 +1,12 @@
+package ie.atu.sw;
+
+import java.util.Arrays;
+import static java.lang.Math.*;
+
+public class LogFunction {
+	public double logProductOf(Double[] numbers) {
+		return Arrays.stream(numbers)
+					 .mapToDouble(n -> n.doubleValue())
+					 .reduce(0, (currentTotal, element) -> currentTotal + log(element));
+	}
+}

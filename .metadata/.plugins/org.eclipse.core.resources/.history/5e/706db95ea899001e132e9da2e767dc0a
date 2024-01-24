@@ -1,0 +1,17 @@
+package ie.atu.sw;
+
+import java.util.Arrays;
+import static java.lang.Math.*;
+
+public interface MathOperation {
+    double operate(Double[] numbers);
+}
+
+public class LogFunction implements MathOperation {
+    @Override
+    public double operate(Double[] numbers) {
+        return Arrays.stream(numbers)
+                     .mapToDouble(Double::doubleValue)
+                     .reduce(0, (currentTotal, element) -> currentTotal + log(element));
+    }
+}

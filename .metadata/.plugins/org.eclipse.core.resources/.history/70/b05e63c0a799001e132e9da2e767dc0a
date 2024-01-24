@@ -1,0 +1,54 @@
+package ie.atu.sw;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+
+public class ObjectQueue {
+	Priority level = Priority.NORMAL_PRIORITY;
+	Deque<Object> objs = new ArrayDeque<>();
+	
+	public void add(Summation s) {
+		objs.push(s);
+	}
+	
+	public void add(Flipper f) {
+		objs.push(f);
+	}
+	
+	public void add(LogFunction f) {
+		objs.push(f);
+	}
+	
+	public Object execute(String request, Object params) {
+		switch(request) {
+			case "summation" -> {
+				Integer[] numbers = (Integer[]) params;
+				for (Object obj : objs) {
+					if (obj instanceof Summation adder) {
+						int result = adder.sumOf(numbers);
+						return Integer.valueOf(result);
+					}
+				}
+			}
+			case "flipper" -> {
+				String s = params.toString();
+				for (Object obj : objs) {
+					if (obj instanceof Flipper r) {
+						return r.flip(s);
+					}
+				}
+			}
+			
+			case "product" -> {
+				Double[] numbers = (Double[]) params;
+				for (Object obj : objs) {
+					if (obj instanceof LogFunction lp) {
+						return lp.logProductOf(numbers);
+					}
+				}
+			}
+
+		};
+		return null;
+	}
+}

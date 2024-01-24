@@ -1,0 +1,26 @@
+package ie.atu.sw;
+
+import java.util.Arrays;
+
+public class Summation implements MathOperation, Executable {
+    
+    @Override
+    public double operate(Number[] numbers) {
+        return Arrays.stream(numbers)
+                     .mapToInt(Number::intValue)
+                     .sum();
+    }
+
+    @Override
+    public boolean canExecute(String request) {
+        return "summation".equals(request);
+    }
+
+    @Override
+    public Object execute(Object params) {
+        if (params instanceof Integer[]) {
+            return operate((Integer[]) params);
+        }
+        return null;
+    }
+}

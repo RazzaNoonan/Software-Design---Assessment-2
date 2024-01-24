@@ -1,0 +1,10 @@
+package ie.atu.sw;
+
+import java.util.Arrays;
+
+public class Summation implements MathOperation {
+    @Override
+    public int operate(Integer[] numbers) {
+        return Arrays.stream(numbers).reduce(0, Integer::sum);
+    }
+}

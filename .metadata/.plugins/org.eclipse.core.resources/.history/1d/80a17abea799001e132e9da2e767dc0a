@@ -1,0 +1,9 @@
+package ie.atu.sw;
+
+import java.util.Arrays;
+
+public class Summation {
+	public int sumOf(Integer[] numbers) {
+		return Arrays.stream(numbers).reduce(0, (t, e) -> t + e);
+	}
+}

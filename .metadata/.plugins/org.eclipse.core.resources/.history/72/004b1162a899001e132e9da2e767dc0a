@@ -1,0 +1,27 @@
+package ie.atu.sw;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+
+public class ObjectQueue {
+    private Priority level = Priority.NORMAL_PRIORITY;
+    private Deque<Executable> queue = new ArrayDeque<>();
+
+    public void add(Executable executable) {
+        queue.push(executable);
+    }
+
+    public Object execute(String request, Object params) {
+        for (Executable executable : queue) {
+            if (executable.canExecute(request)) {
+                return executable.execute(params);
+            }
+        }
+        return null;
+    }
+}
+
+public interface Executable {
+    boolean canExecute(String request);
+    Object execute(Object params);
+}

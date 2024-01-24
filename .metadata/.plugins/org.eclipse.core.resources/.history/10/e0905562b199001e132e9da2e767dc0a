@@ -1,0 +1,27 @@
+package ie.atu.sw;
+
+import java.util.Arrays;
+
+public class LogFunction implements MathOperation, Executable {
+    
+    @Override
+    public double operate(Number[] numbers) {
+        return Arrays.stream(numbers)
+                     .mapToDouble(Number::doubleValue)
+                     .map(Math::log)
+                     .sum();
+    }
+
+    @Override
+    public boolean canExecute(String request) {
+        return "logProduct".equals(request);
+    }
+
+    @Override
+    public Object execute(Object params) {
+        if (params instanceof Double[]) {
+            return operate((Double[]) params);
+        }
+        return null;
+    }
+}

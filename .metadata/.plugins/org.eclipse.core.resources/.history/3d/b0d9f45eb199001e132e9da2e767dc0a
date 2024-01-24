@@ -1,0 +1,6 @@
+package ie.atu.sw;
+
+public interface Executable {
+    boolean canExecute(String request);
+    Object execute(Object params);
+}

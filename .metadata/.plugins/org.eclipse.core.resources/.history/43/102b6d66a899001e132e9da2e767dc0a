@@ -1,0 +1,7 @@
+package ie.atu.sw;
+
+public class Flipper {
+	public String flip(String s) {
+		return new StringBuilder(s).reverse().toString();
+	}
+}
